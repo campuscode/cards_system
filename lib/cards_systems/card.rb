@@ -1,44 +1,34 @@
 class Card
-  CARDS_FILE = "#{ENV['HOME']}/cards.txt"
-  SEPARADOR = "_|>_"
+  SEPARATOR = "_|>_"
   attr_reader :front, :back
-  `touch #{CARDS_FILE}`
 
   def initialize(front, back)
     @front = front
     @back = back
   end
 
+  def self.repository(repository = nil)
+    @repository ||= repository || CardsRepository.new
+  end
+
   def self.save(card)
-    all << card
-    File.open(CARDS_FILE, "a+") do |f|
-      f.puts card.to_row
-    end
+    repository.save(card)
   end
 
   def self.save_all(cards)
-    str_cards = cards.map(&:to_row)
-
-    File.open(CARDS_FILE, "w") do |f|
-      f << str_cards.join("\n")
-    end
+    repository.save_all(card)
   end
 
   def self.all
-    @@cards ||= File.readlines(CARDS_FILE).map do |row|
-      front, back = row.chomp.split(SEPARADOR)
-      Card.new(front, back)
-    end
+    repository.all
   end
 
   def self.delete(cards)
-    _cards = all - cards
-    save_all(_cards)
-    @@cards = nil
+    repository.delete(cards)
   end
 
   def self.search(termo)
-    all.select { |card| card.include?(termo) }
+    repository.search(termo)
   end
 
   def include?(text)
@@ -47,7 +37,19 @@ class Card
   end
 
   def to_row
-    "#{front}#{SEPARADOR}#{back}"
+    "#{front}#{SEPARATOR}#{back}"
+  end
+
+  def hash
+    front.hash + back.hash
+  end
+
+  def eql?(other)
+    front == other.front && back == other.back
+  end
+
+  def ==(other)
+    eql? other
   end
 
   def to_s
