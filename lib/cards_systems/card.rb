@@ -1,35 +1,20 @@
 class Card
   SEPARATOR = "_|>_"
-  attr_reader :front, :back
+  attr_reader :front, :repository, :back
+
+  class << self
+    extend Forwardable
+    def_delegators :repository, :save, :save_all, :delete, :search, :all
+  end
 
   def initialize(front, back)
     @front = front
     @back = back
   end
 
-  def self.repository(repository = nil)
-    @repository ||= repository || CardsRepository.new
-  end
-
-  def self.save(card)
-    repository.save(card)
-  end
-
-  def self.save_all(cards)
-    repository.save_all(card)
-  end
-
-  def self.all
-    repository.all
-  end
-
-  def self.delete(cards)
-    repository.delete(cards)
-  end
-
-  def self.search(termo)
-    repository.search(termo)
-  end
+   def self.repository(repository = nil)
+     @repository = repository || @repository || CardsRepository.new
+   end
 
   def include?(text)
     front.upcase.include?(text.upcase) ||

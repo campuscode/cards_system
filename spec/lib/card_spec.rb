@@ -22,12 +22,12 @@ describe Card do
   end
 
   describe "#include" do
-    it { expect(subject).to be_include "Gato" }
-    it { expect(subject).to be_include "Cat" }
-    it { expect(subject).to be_include "CAT" }
-    it { expect(subject).to be_include "GATO" }
-    it { expect(subject).to be_include "TO" }
-    it { expect(subject).not_to be_include "tac" }
-    it { expect(subject).not_to be_include "jato" }
+    it { is_expected.to     be_include "Gato" }
+    it { is_expected.to     be_include "Cat" }
+    it { is_expected.to     be_include "CAT" }
+    it { is_expected.to     be_include "GATO" }
+    it { is_expected.to     be_include "TO" }
+    it { is_expected.not_to be_include "tac" }
+    it { is_expected.not_to be_include "jato" }
   end
 end
