@@ -2,7 +2,7 @@ require 'fileutils'
 
 class CardsRepository
   FILE_PATH = "#{ENV['HOME']}/cards.dat".freeze
-  SEPARATOR = "_|>_"
+  SEPARATOR = '_|>_'.freeze
 
   def initialize
     FileUtils.touch FILE_PATH

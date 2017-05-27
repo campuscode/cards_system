@@ -1,9 +1,9 @@
 class Application
-  INSERIR_CARD     = '1'
-  VISUALIZAR_CARDS = '2'
-  PESQUISAR_CARD   = '3'
-  EXCLUIR_CARDS    = '4'
-  SAIR             = '5'
+  INSERIR_CARD     = '1'.freeze
+  VISUALIZAR_CARDS = '2'.freeze
+  PESQUISAR_CARD   = '3'.freeze
+  EXCLUIR_CARDS    = '4'.freeze
+  SAIR             = '5'.freeze
   CARDS_POR_PAGINA = 3
 
   def initialize
@@ -15,7 +15,7 @@ class Application
   end
 
   def init
-    while true
+    loop do
       opcao = menu
       case opcao
       when INSERIR_CARD
@@ -68,7 +68,7 @@ class Application
       puts '-' * 20
     end
     puts
-    puts '*****  Fim da lista *****' if cards.size > 0
+    puts '*****  Fim da lista *****' unless cards.empty?
     wait_keydown
   end
 

@@ -6,6 +6,7 @@ autoload :CardsRepository, 'cards_systems/cards_repository'
 
 module CardsSystems
   module_function
+
   def run
     Application.new.init
   end

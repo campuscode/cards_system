@@ -1,5 +1,5 @@
 class Card
-  SEPARATOR = "_|>_"
+  SEPARATOR = '_|>_'.freeze
   attr_reader :front, :repository, :back
 
   class << self
@@ -12,9 +12,9 @@ class Card
     @back = back
   end
 
-   def self.repository(repository = nil)
-     @repository = repository || @repository || CardsRepository.new
-   end
+  def self.repository(repository = nil)
+    @repository = repository || @repository || CardsRepository.new
+  end
 
   def include?(text)
     front.upcase.include?(text.upcase) ||
