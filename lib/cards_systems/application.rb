@@ -47,7 +47,7 @@ class Application
     clear
     puts 'Card inserido: '
     puts
-    mostra_card card
+    show_card card
   end
 
   def read_text
@@ -72,7 +72,7 @@ class Application
     wait_keydown
   end
 
-  def mostra_card(card)
+  def show_card(card)
     puts card
     wait_keydown
   end
