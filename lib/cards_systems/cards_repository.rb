@@ -20,12 +20,14 @@ class CardsRepository
     File.open(FILE_PATH, 'w') do |f|
       f << str_cards.join("\n")
     end
+    @cards = nil
   end
 
   def save(card)
     File.open(FILE_PATH, 'a+') do |f|
       f.puts card.to_row
     end
+    @cards = nil
   end
 
   def search(termo)
