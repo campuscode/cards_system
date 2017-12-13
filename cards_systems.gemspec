@@ -26,5 +26,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.5'
   spec.add_development_dependency 'simplecov', '~> 0.12'
   spec.add_development_dependency 'pry-byebug', '~> 3.4'
-  spec.add_development_dependency 'rubocop', '~> 0.47'
+  spec.add_development_dependency 'rubocop', '~> 0.49.0'
 end
